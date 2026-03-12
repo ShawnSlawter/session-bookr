@@ -12,17 +12,17 @@ Scope: **frontend only** (UX, UI, accessibility, and component structure). No ba
 - Standardize section spacing and visual separation.
 
 **Tasks**
-- [ ] Review current `#root` styles in `App.css` and how they interact with Tailwind layout classes.
-- [ ] Decide on layout strategy: full-bleed sections with inner `max-w-6xl` container.
-- [ ] Adjust global layout so the root element does not impose conflicting `max-width`, padding, or centering.
-- [ ] Verify hero, schedule, trust, testimonials, and logistics sections render consistently across breakpoints.
-- [ ] Introduce subtle section separation patterns:
-  - [ ] Confirm which sections use `bg-background`, `bg-card/50`, or other variants.
+- [x] Review current `#root` styles in `App.css` and how they interact with Tailwind layout classes.
+- [x] Decide on layout strategy: full-bleed sections with inner `max-w-6xl` container.
+- [x] Adjust global layout so the root element does not impose conflicting `max-width`, padding, or centering.
+- [x] Verify hero, schedule, trust, testimonials, and logistics sections render consistently across breakpoints.
+- [x] Introduce subtle section separation patterns:
+  - [x] Confirm which sections use `bg-background`, `bg-card/50`, or other variants.
   - [ ] Optionally add a simple section divider (border or gradient) between key sections.
 
 **Acceptance Criteria**
-- [ ] The page feels full-width where intended, with content constrained by inner containers.
-- [ ] Sections are visually distinct but cohesive, with consistent vertical rhythm.
+- [x] The page feels full-width where intended, with content constrained by inner containers.
+- [x] Sections are visually distinct but cohesive, with consistent vertical rhythm.
 
 ---
 
@@ -154,18 +154,18 @@ Scope: **frontend only** (UX, UI, accessibility, and component structure). No ba
 - Make testimonials feel human, varied, and scannable.
 
 **Tasks**
-- [ ] Add persona tags to each testimonial (e.g., “Expat”, “Beginner to lifting”, “Tech professional”).
-- [ ] Optionally add avatar placeholders:
-  - [ ] Decide on style (initials-based avatar with neutral background).
-  - [ ] Ensure it doesn’t require real photos at this stage.
-- [ ] Slightly vary testimonial card content length so grid feels more organic while staying aligned.
-- [ ] Revisit the “Community training” image strip:
-  - [ ] Confirm caption and overlay are legible.
-  - [ ] Decide if additional microcopy is needed (e.g., “Group sessions offered on request”).
+- [x] Add persona tags to each testimonial (e.g., “Expat”, “Beginner to lifting”, “Tech professional”).
+- [x] Optionally add avatar placeholders:
+  - [x] Decide on style (initials-based avatar with neutral background).
+  - [x] Ensure it doesn’t require real photos at this stage.
+- [x] Slightly vary testimonial card content length so grid feels more organic while staying aligned.
+- [x] Revisit the “Community training” image strip:
+  - [x] Confirm caption and overlay are legible.
+  - [x] Decide if additional microcopy is needed (e.g., “Group sessions offered on request”).
 
 **Acceptance Criteria**
-- [ ] Testimonials convey diverse, believable client stories.
-- [ ] The section enhances trust without overwhelming the user.
+- [x] Testimonials convey diverse, believable client stories.
+- [x] The section enhances trust without overwhelming the user.
 
 ---
 

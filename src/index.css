@@ -65,3 +65,28 @@
     scroll-behavior: smooth;
   }
 }
+
+@keyframes coach-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.coach-fade-in-up {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: coach-fade-in-up 800ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coach-fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
