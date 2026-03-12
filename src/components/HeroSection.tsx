@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { toast } from "sonner";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   const handleBook = () => toast("Demo mode — booking not yet connected");
@@ -9,37 +10,18 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[100svh] flex items-end pb-16 sm:pb-20 pt-24 overflow-hidden">
-      {/* Hero background — abstract training environment */}
+      {/* Hero background image */}
       <div className="absolute inset-0">
-        {/* Dark gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-[hsl(0,0%,7%)] to-background" />
-        
-        {/* Geometric shapes suggesting structure / gym environment */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.08]" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
-          {/* Barbell-like horizontal lines */}
-          <rect x="100" y="300" width="400" height="3" fill="hsl(24, 95%, 53%)" rx="1.5" />
-          <rect x="700" y="300" width="400" height="3" fill="hsl(24, 95%, 53%)" rx="1.5" />
-          <circle cx="500" cy="301" r="40" stroke="hsl(24, 95%, 53%)" strokeWidth="3" fill="none" />
-          <circle cx="700" cy="301" r="40" stroke="hsl(24, 95%, 53%)" strokeWidth="3" fill="none" />
-          
-          {/* Grid pattern */}
-          {Array.from({ length: 8 }).map((_, i) => (
-            <line key={`v${i}`} x1={150 * (i + 1)} y1="0" x2={150 * (i + 1)} y2="800" stroke="hsl(0,0%,30%)" strokeWidth="0.5" />
-          ))}
-          {Array.from({ length: 5 }).map((_, i) => (
-            <line key={`h${i}`} x1="0" y1={160 * (i + 1)} x2="1200" y2={160 * (i + 1)} stroke="hsl(0,0%,30%)" strokeWidth="0.5" />
-          ))}
-          
-          {/* Diagonal energy lines */}
-          <line x1="0" y1="800" x2="600" y2="200" stroke="hsl(24, 95%, 53%)" strokeWidth="1" opacity="0.5" />
-          <line x1="1200" y1="800" x2="600" y2="200" stroke="hsl(24, 95%, 53%)" strokeWidth="1" opacity="0.5" />
-        </svg>
-
-        {/* Warm gradient overlay from bottom-right */}
-        <div className="absolute inset-0 bg-gradient-to-tl from-[hsl(24,95%,53%,0.06)] via-transparent to-transparent" />
-        
-        {/* Bottom fade for content readability */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background via-background/80 to-transparent" />
+        <img
+          src={heroBg}
+          alt="Barbell on gym floor with dramatic lighting"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        {/* Dark overlays for readability */}
+        <div className="absolute inset-0 bg-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
       </div>
 
       {/* Content */}

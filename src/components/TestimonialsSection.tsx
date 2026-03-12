@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import communityTraining from "@/assets/community-training.jpg";
 
 interface Testimonial {
   quote: string;
@@ -62,31 +63,17 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Community training placeholder strip */}
-        <div className="mt-10 sm:mt-14 relative rounded-xl overflow-hidden bg-card border border-border h-32 sm:h-44">
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="community-bg" x1="0" y1="0" x2="1" y2="0.5">
-                <stop offset="0%" stopColor="hsl(0, 0%, 8%)" />
-                <stop offset="50%" stopColor="hsl(20, 15%, 10%)" />
-                <stop offset="100%" stopColor="hsl(0, 0%, 8%)" />
-              </linearGradient>
-            </defs>
-            <rect width="1200" height="200" fill="url(#community-bg)" />
-            
-            {/* Group of people silhouettes */}
-            {[200, 350, 500, 650, 800, 950].map((x, i) => (
-              <g key={i}>
-                <ellipse cx={x} cy={85} rx={18 + (i % 3) * 4} ry={22 + (i % 2) * 5} fill={`hsl(0, 0%, ${14 + (i % 3) * 2}%)`} />
-                <ellipse cx={x} cy={145} rx={22 + (i % 2) * 6} ry={45} fill={`hsl(0, 0%, ${12 + (i % 3) * 2}%)`} />
-              </g>
-            ))}
-            
-            {/* Subtle orange line */}
-            <rect x="0" y="196" width="1200" height="4" fill="hsl(24, 95%, 53%)" opacity="0.2" />
-          </svg>
+        {/* Community training image */}
+        <div className="mt-10 sm:mt-14 relative rounded-xl overflow-hidden h-32 sm:h-44">
+          <img
+            src={communityTraining}
+            alt="Small group outdoor training in a Barcelona park"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-background/40" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-xs text-muted-foreground/50 uppercase tracking-widest">Community Training</span>
+            <span className="text-xs text-foreground/60 uppercase tracking-widest font-medium">Community Training</span>
           </div>
         </div>
       </div>
