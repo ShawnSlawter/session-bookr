@@ -14,7 +14,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroBg}
-          alt="Barbell on gym floor with dramatic lighting"
+          alt="Close-up of a professional barbell on a gym floor, representing structured physical training"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
         />
@@ -30,7 +30,7 @@ const HeroSection = () => {
           {/* Tag */}
           <div className="inline-flex items-center gap-2 mb-6 sm:mb-8">
             <span className="w-8 h-px bg-primary" />
-            <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium">
+            <span className="text-xs uppercase tracking-tag text-muted-foreground font-medium">
               Barcelona · Studio & Outdoor
             </span>
           </div>
@@ -46,16 +46,16 @@ const HeroSection = () => {
 
           {/* Session type hints */}
           <div className="flex flex-wrap items-center gap-2 mb-6">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs sm:text-sm text-foreground">
-              <Dumbbell className="h-3.5 w-3.5 text-primary" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-foreground">
+              <Dumbbell className="h-4 w-4 text-primary" />
               <span>Strength</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(160,60%,50%,0.12)] px-3 py-1 text-xs sm:text-sm text-[hsl(160,60%,75%)]">
-              <Clock className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground border border-border">
+              <Clock className="h-4 w-4" />
               <span>Conditioning</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(220,60%,60%,0.12)] px-3 py-1 text-xs sm:text-sm text-[hsl(220,70%,80%)]">
-              <MapPin className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground border border-border">
+              <MapPin className="h-4 w-4" />
               <span>Mobility</span>
             </span>
           </div>
@@ -65,17 +65,17 @@ const HeroSection = () => {
             <Button
               size="lg"
               onClick={scrollToSchedule}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 h-12 text-base font-semibold shadow-[0_0_30px_hsl(24,95%,53%,0.2)]"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 h-12 text-base font-semibold shadow-[0_0_30px_hsl(24,95%,53%,0.2)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] hover:shadow-[0_0_40px_hsl(24,95%,53%,0.4)]"
             >
               View This Week&apos;s Schedule
             </Button>
             <button
               onClick={scrollToSchedule}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
-              aria-label="Scroll to schedule"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-300 hover-lift group"
+              aria-label="Scroll down to view weekly session schedule"
             >
               <span>Scroll to schedule</span>
-              <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300" aria-hidden="true" />
             </button>
           </div>
 

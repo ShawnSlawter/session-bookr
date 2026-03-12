@@ -1,20 +1,8 @@
 import { useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MapPin, Users, Clock, Dumbbell } from "lucide-react";
 import { toast } from "sonner";
-
-interface Session {
-  day: string;
-  time: string;
-  name: string;
-  focus: string;
-  location: "Studio" | "Outdoor";
-  format: "1-on-1" | "Small Group";
-  duration: string;
-  spots: number;
-  highlight?: "New" | "Popular";
-}
+import SectionHeader from "./ui/SectionHeader";
+import SessionRow, { Session } from "./schedule/SessionRow";
+import SessionCard from "./schedule/SessionCard";
 
 const schedule: Session[] = [
   { day: "Monday", time: "07:00", name: "Morning Strength", focus: "Strength", location: "Studio", format: "1-on-1", duration: "60 min", spots: 1 },
@@ -26,19 +14,6 @@ const schedule: Session[] = [
   { day: "Saturday", time: "09:00", name: "Park Training", focus: "Conditioning", location: "Outdoor", format: "Small Group", duration: "60 min", spots: 5 },
   { day: "Saturday", time: "11:00", name: "Recovery Flow", focus: "Mobility", location: "Studio", format: "1-on-1", duration: "45 min", spots: 1 },
 ];
-
-const focusBadgeClasses = (focus: string) => {
-  switch (focus) {
-    case "Strength":
-      return "bg-primary/10 text-primary";
-    case "Conditioning":
-      return "bg-[hsl(160,60%,50%,0.12)] text-[hsl(160,60%,75%)]";
-    case "Mobility":
-      return "bg-[hsl(220,60%,60%,0.12)] text-[hsl(220,70%,80%)]";
-    default:
-      return "bg-muted text-muted-foreground";
-  }
-};
 
 type ScheduleFilter = "All" | "Studio" | "Outdoor" | "1-on-1" | "Small Group";
 
@@ -73,30 +48,31 @@ const ScheduleSection = () => {
     return Array.from(map.entries());
   }, [filteredSchedule]);
 
+  const scheduleDescription = (
+    <div className="space-y-3">
+      <p>8 weekly sessions · Studio & Outdoor · 1-on-1 and Small Group options.</p>
+      <p className="text-xs sm:text-sm">
+        <span className="font-bold text-foreground">How it works:</span> Pick a time below. After booking, we&apos;ll have a short intake call and a movement assessment to tailor your program. No upfront commitment required.
+      </p>
+      <p className="text-xs sm:text-sm">
+        Not sure where to start? Try <span className="font-medium text-foreground underline underline-offset-4 decoration-primary/30">Barbell Fundamentals</span> or{" "}
+        <span className="font-medium text-foreground underline underline-offset-4 decoration-primary/30">Movement &amp; Mobility</span>.
+      </p>
+    </div>
+  );
+
   return (
     <section id="schedule" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="mb-8 sm:mb-10">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-8 h-px bg-primary" />
-            <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium">Weekly Schedule</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Find Your Session
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground max-w-xl">
-            8 weekly sessions · Studio & Outdoor · 1-on-1 and Small Group options.
-          </p>
-          <p className="mt-2 text-xs sm:text-sm text-muted-foreground">
-            Not sure where to start? Try <span className="font-medium text-foreground">Barbell Fundamentals</span> or{" "}
-            <span className="font-medium text-foreground">Movement &amp; Mobility</span>.
-          </p>
-        </div>
+        <SectionHeader
+          label="Weekly Schedule"
+          title="Find Your Session"
+          description={scheduleDescription}
+        />
 
         {/* Filters */}
         <div className="mb-8 flex flex-wrap items-center gap-2 sm:gap-3">
-          <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-medium">
+          <span className="text-xs uppercase tracking-tag text-muted-foreground font-semibold mr-1">
             Filter
           </span>
           {["All", "Studio", "Outdoor", "1-on-1", "Small Group"].map((value) => {
@@ -107,11 +83,13 @@ const ScheduleSection = () => {
                 key={v}
                 type="button"
                 onClick={() => setFilter(v)}
-                className={`rounded-full border px-3 py-1 text-xs sm:text-sm transition-colors ${
+                className={`rounded-full border px-4 py-1.5 text-xs font-semibold md:text-sm transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] ${
                   isActive
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background text-muted-foreground border-border hover:text-foreground"
+                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                    : "bg-background text-muted-foreground border-border hover:text-foreground hover:bg-muted/30"
                 }`}
+                aria-pressed={isActive}
+                aria-label={`Filter by ${v}`}
               >
                 {v}
               </button>
@@ -138,96 +116,7 @@ const ScheduleSection = () => {
               </thead>
               <tbody>
                 {filteredSchedule.map((s, i) => (
-                  <tr key={`${s.day}-${s.time}-${i}`} className="border-b border-border/50 last:border-0 hover:bg-muted/20 transition-colors">
-                    <td className="px-5 py-4 text-sm font-medium text-foreground">{s.day}</td>
-                    <td className="px-5 py-4 text-sm text-foreground tabular-nums">{s.time}</td>
-                    <td className="px-5 py-4 text-sm font-medium text-foreground">
-                      <div className="flex items-center gap-2">
-                        <span>{s.name}</span>
-                        {s.highlight && (
-                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
-                            {s.highlight}
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span
-                        className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${focusBadgeClasses(
-                          s.focus,
-                        )}`}
-                      >
-                        <Dumbbell className="w-3 h-3" />
-                        {s.focus}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full ${
-                        s.location === "Studio" 
-                          ? "bg-muted text-secondary-foreground" 
-                          : "bg-[hsl(160,60%,50%,0.1)] text-[hsl(160,60%,50%)]"
-                      }`}>
-                        <MapPin className="w-3 h-3" />
-                        {s.location}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Users className="w-3 h-3" />
-                        {s.format}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Clock className="w-3 h-3" />
-                        {s.duration}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4 text-right">
-                      <span className="text-sm text-primary font-semibold">{s.spots}</span>
-                    </td>
-                    <td className="px-5 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Dialog>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 text-[11px] text-muted-foreground hover:text-foreground hover:bg-muted/40"
-                            asChild
-                          >
-                            <button type="button">More details</button>
-                          </Button>
-                          <DialogContent className="max-w-md">
-                            <DialogHeader>
-                              <DialogTitle>{s.name}</DialogTitle>
-                              <DialogDescription>
-                                High-level overview of what to expect in this session. Booking will be added later.
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="mt-3 space-y-2 text-sm text-muted-foreground">
-                              <p>
-                                Focus: <span className="font-medium text-foreground">{s.focus}</span>
-                              </p>
-                              <p>
-                                Format: <span className="font-medium text-foreground">{s.format}</span>
-                              </p>
-                              <p>
-                                Location: <span className="font-medium text-foreground">{s.location}</span>
-                              </p>
-                              <p>Duration: {s.duration}</p>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
-                        <Button
-                          size="sm"
-                          onClick={handleBook}
-                          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-4 h-8 text-xs font-semibold"
-                        >
-                          Book
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
+                  <SessionRow key={`${s.day}-${s.time}-${i}`} session={s} onBook={handleBook} />
                 ))}
               </tbody>
             </table>
@@ -235,95 +124,20 @@ const ScheduleSection = () => {
         </div>
 
         {/* Mobile Cards */}
-        <div className="lg:hidden space-y-4">
+        <div className="lg:hidden space-y-10">
           {sessionsByDay.map(([day, sessions]) => (
-            <div key={day} className="space-y-3">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-                {day}
-              </h3>
-              {sessions.map((s, i) => (
-                <div key={`${s.day}-${s.time}-${i}`} className="bg-card border border-border rounded-xl p-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <p className="text-sm text-muted-foreground tabular-nums">{s.time}</p>
-                      <h3 className="text-base font-semibold text-foreground mt-0.5">{s.name}</h3>
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span
-                        className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${focusBadgeClasses(
-                          s.focus,
-                        )}`}
-                      >
-                        <Dumbbell className="w-3 h-3" />
-                        {s.focus}
-                      </span>
-                      {s.highlight && (
-                        <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
-                          {s.highlight}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${
-                      s.location === "Studio" 
-                        ? "bg-muted text-secondary-foreground" 
-                        : "bg-[hsl(160,60%,50%,0.1)] text-[hsl(160,60%,50%)]"
-                    }`}>
-                      <MapPin className="w-3 h-3" />
-                      {s.location}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <Users className="w-3 h-3" />{s.format}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="w-3 h-3" />{s.duration}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-primary font-semibold">{s.spots} spot{s.spots > 1 ? "s" : ""} left</span>
-                    <div className="flex items-center gap-2">
-                      <Dialog>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 px-2 text-[11px] text-muted-foreground hover:text-foreground hover:bg-muted/40"
-                          asChild
-                        >
-                          <button type="button">More details</button>
-                        </Button>
-                        <DialogContent className="max-w-md">
-                          <DialogHeader>
-                            <DialogTitle>{s.name}</DialogTitle>
-                            <DialogDescription>
-                              High-level overview of what to expect in this session. Booking will be added later.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="mt-3 space-y-2 text-sm text-muted-foreground">
-                            <p>
-                              Focus: <span className="font-medium text-foreground">{s.focus}</span>
-                            </p>
-                            <p>
-                              Format: <span className="font-medium text-foreground">{s.format}</span>
-                            </p>
-                            <p>
-                              Location: <span className="font-medium text-foreground">{s.location}</span>
-                            </p>
-                            <p>Duration: {s.duration}</p>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                      <Button
-                        size="sm"
-                        onClick={handleBook}
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-5 h-8 text-xs font-semibold"
-                      >
-                        Book
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div key={day} className="space-y-4">
+              <div className="sticky top-[56px] sm:top-[64px] z-20 bg-background/95 backdrop-blur-md -mx-4 px-5 py-3 border-y border-border/40">
+                <h3 className="text-xs font-extrabold uppercase tracking-tag text-primary flex items-center gap-2">
+                  <span className="w-4 h-0.5 bg-primary/50 rounded-full" />
+                  {day}
+                </h3>
+              </div>
+              <div className="space-y-4">
+                {sessions.map((s, i) => (
+                  <SessionCard key={`${s.day}-${s.time}-${i}`} session={s} onBook={handleBook} />
+                ))}
+              </div>
             </div>
           ))}
         </div>

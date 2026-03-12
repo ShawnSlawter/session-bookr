@@ -22,7 +22,7 @@
     --secondary-foreground: 0 0% 80%;
 
     --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 55%;
+    --muted-foreground: 0 0% 60%;
 
     --accent: 0 0% 14%;
     --accent-foreground: 0 0% 95%;
@@ -35,6 +35,10 @@
     --ring: 24 95% 53%;
 
     --radius: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+
+    --tracking-tag: 0.15em;
 
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 80%;
@@ -49,7 +53,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-none;
   }
 
   body {
@@ -64,6 +68,40 @@
   html {
     scroll-behavior: smooth;
   }
+
+  :focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .transition-standard {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 ease-out hover:shadow-[0_0_25px_rgba(244,117,33,0.15)];
+  }
+
+  /* Entrance Animations */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-1 { transition-delay: 100ms; }
+  .stagger-2 { transition-delay: 200ms; }
+  .stagger-3 { transition-delay: 300ms; }
 }
 
 @keyframes coach-fade-in-up {
@@ -88,5 +126,15 @@
     animation: none;
     opacity: 1;
     transform: none;
+  }
+  
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
   }
 }

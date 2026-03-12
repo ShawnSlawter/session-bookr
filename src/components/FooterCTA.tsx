@@ -19,7 +19,7 @@ const FooterCTA = () => {
           <Button
             size="lg"
             onClick={handleBook}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-10 h-13 text-base font-semibold shadow-[0_0_40px_hsl(24,95%,53%,0.25)]"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-10 h-13 text-base font-semibold shadow-[0_0_40px_hsl(24,95%,53%,0.25)] transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] hover:shadow-[0_0_50px_hsl(24,95%,53%,0.4)]"
           >
             Book Your Session
           </Button>
