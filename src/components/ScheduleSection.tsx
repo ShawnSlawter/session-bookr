@@ -1,39 +1,31 @@
 import { useMemo, useState } from "react";
-import { toast } from "sonner";
 import SectionHeader from "./ui/SectionHeader";
 import SessionRow, { Session } from "./schedule/SessionRow";
 import SessionCard from "./schedule/SessionCard";
+import { useBookingDemo } from "@/context/BookingContext";
 
 const schedule: Session[] = [
-  { day: "Monday", time: "07:00", name: "Morning Strength", focus: "Strength", location: "Studio", format: "1-on-1", duration: "60 min", spots: 1 },
-  { day: "Monday", time: "18:30", name: "Conditioning Circuit", focus: "Conditioning", location: "Outdoor", format: "Small Group", duration: "45 min", spots: 3, highlight: "Popular" },
-  { day: "Tuesday", time: "08:00", name: "Movement & Mobility", focus: "Mobility", location: "Studio", format: "1-on-1", duration: "50 min", spots: 1 },
-  { day: "Wednesday", time: "07:00", name: "Barbell Fundamentals", focus: "Strength", location: "Studio", format: "Small Group", duration: "60 min", spots: 2, highlight: "New" },
-  { day: "Thursday", time: "17:30", name: "Beach Conditioning", focus: "Conditioning", location: "Outdoor", format: "Small Group", duration: "45 min", spots: 4 },
-  { day: "Friday", time: "07:30", name: "Strength & Power", focus: "Strength", location: "Studio", format: "1-on-1", duration: "60 min", spots: 1 },
-  { day: "Saturday", time: "09:00", name: "Park Training", focus: "Conditioning", location: "Outdoor", format: "Small Group", duration: "60 min", spots: 5 },
-  { day: "Saturday", time: "11:00", name: "Recovery Flow", focus: "Mobility", location: "Studio", format: "1-on-1", duration: "45 min", spots: 1 },
+  { day: "Precision Areas", time: "15 min", name: "Upper Lip & Chin", focus: "High Precision", location: "Studio", format: "Cooling-First", duration: "6–8 sessions", spots: 1 },
+  { day: "Precision Areas", time: "20 min", name: "Underarms", focus: "Sensitive", location: "Studio", format: "Cooling-First", duration: "6–8 sessions", spots: 1, highlight: "Popular" },
+  { day: "Essential Areas", time: "30 min", name: "Bikini Line (French/Brazilian)", focus: "High Precision", location: "Studio", format: "Cooling-First", duration: "6–8 sessions", spots: 1 },
+  { day: "Essential Areas", time: "40 min", name: "Half Legs or Arms", focus: "Efficiency", location: "Studio", format: "Cooling-First", duration: "6–8 sessions", spots: 1 },
+  { day: "Full Coverage", time: "60 min", name: "Full Legs", focus: "Total Coverage", location: "Studio", format: "Cooling-First", duration: "8–10 sessions", spots: 1 },
+  { day: "Full Coverage", time: "75 min", name: "Full Back or Chest", focus: "Total Coverage", location: "Studio", format: "Cooling-First", duration: "8–10 sessions", spots: 1 },
 ];
 
-type ScheduleFilter = "All" | "Studio" | "Outdoor" | "1-on-1" | "Small Group";
+type ScheduleFilter = "All" | "Precision Areas" | "Essential Areas" | "Full Coverage";
 
 const ScheduleSection = () => {
   const [filter, setFilter] = useState<ScheduleFilter>("All");
+  const { openBookingDemo } = useBookingDemo();
 
-  const handleBook = () =>
-    toast("Demo mode — booking not yet connected");
+  const handleBook = () => openBookingDemo();
 
   const filteredSchedule = useMemo(
     () =>
       schedule.filter((s) => {
         if (filter === "All") return true;
-        if (filter === "Studio" || filter === "Outdoor") {
-          return s.location === filter;
-        }
-        if (filter === "1-on-1" || filter === "Small Group") {
-          return s.format === filter;
-        }
-        return true;
+        return s.day === filter;
       }),
     [filter],
   );
@@ -49,33 +41,42 @@ const ScheduleSection = () => {
   }, [filteredSchedule]);
 
   const scheduleDescription = (
-    <div className="space-y-3">
-      <p>8 weekly sessions · Studio & Outdoor · 1-on-1 and Small Group options.</p>
-      <p className="text-xs sm:text-sm">
-        <span className="font-bold text-foreground">How it works:</span> Pick a time below. After booking, we&apos;ll have a short intake call and a movement assessment to tailor your program. No upfront commitment required.
+    <div className="space-y-4 max-w-3xl">
+      <p className="text-espresso font-medium text-base sm:text-lg leading-relaxed">
+        Boutique care · Dedicated Austin Studio · Consultation-First Approach.
       </p>
-      <p className="text-xs sm:text-sm">
-        Not sure where to start? Try <span className="font-medium text-foreground underline underline-offset-4 decoration-primary/30">Barbell Fundamentals</span> or{" "}
-        <span className="font-medium text-foreground underline underline-offset-4 decoration-primary/30">Movement &amp; Mobility</span>.
-      </p>
+      <div className="grid sm:grid-cols-2 gap-6 sm:gap-10 pt-2">
+        <div className="space-y-2">
+          <p className="text-xs uppercase tracking-widest text-primary font-bold">The Process</p>
+          <p className="text-sm text-espresso/80 leading-relaxed font-medium">
+            Every permanent reduction plan starts with a clinical consultation. We assess your density and skin tone to build a custom schedule.
+          </p>
+        </div>
+        <div className="space-y-2">
+          <p className="text-xs uppercase tracking-widest text-primary font-bold">New Clients</p>
+          <p className="text-sm text-espresso/80 leading-relaxed font-medium">
+            Not sure where to start? Most clients begin with a <span className="font-bold text-espresso italic underline underline-offset-4 decoration-primary/30">Face or Precision Area</span> to experience our cooling technology.
+          </p>
+        </div>
+      </div>
     </div>
   );
 
   return (
-    <section id="schedule" className="py-20 sm:py-28">
+    <section id="schedule" className="py-24 sm:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
-          label="Weekly Schedule"
-          title="Find Your Session"
+          label="Treatment Areas"
+          title="Curated precision for every curve."
           description={scheduleDescription}
         />
 
-        {/* Filters */}
-        <div className="mb-8 flex flex-wrap items-center gap-2 sm:gap-3">
-          <span className="text-xs uppercase tracking-tag text-muted-foreground font-semibold mr-1">
-            Filter
+        {/* Filters — Increased Clarity */}
+        <div className="mb-12 flex flex-wrap items-center gap-3">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/40 font-bold mr-2">
+            Filter View
           </span>
-          {["All", "Studio", "Outdoor", "1-on-1", "Small Group"].map((value) => {
+          {["All", "Precision Areas", "Essential Areas", "Full Coverage"].map((value) => {
             const v = value as ScheduleFilter;
             const isActive = filter === v;
             return (
@@ -83,10 +84,10 @@ const ScheduleSection = () => {
                 key={v}
                 type="button"
                 onClick={() => setFilter(v)}
-                className={`rounded-full border px-4 py-1.5 text-xs font-semibold md:text-sm transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] ${
+                className={`rounded-full border px-6 py-2.5 text-xs font-bold tracking-wide transition-all duration-700 hover:-translate-y-0.5 active:scale-[0.98] ${
                   isActive
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background text-muted-foreground border-border hover:text-foreground hover:bg-muted/30"
+                    ? "bg-primary text-white border-primary shadow-[0_15px_30px_-10px_hsla(340,30%,48%,0.4)]"
+                    : "bg-white text-espresso/60 border-border/60 hover:text-espresso hover:border-primary/40 hover:shadow-lg hover:shadow-black/[0.02]"
                 }`}
                 aria-pressed={isActive}
                 aria-label={`Filter by ${v}`}
@@ -97,21 +98,21 @@ const ScheduleSection = () => {
           })}
         </div>
 
-        {/* Desktop Table */}
-        <div className="hidden lg:block">
-          <div className="rounded-xl border border-border overflow-hidden bg-card">
-            <table className="w-full">
+        {/* Desktop Table — Architectural Polish */}
+        <div className="hidden lg:block coach-fade-in-up">
+          <div className="architectural-panel border-border/10 shadow-[0_48px_100px_-24px_rgba(0,0,0,0.08)] bg-white/40">
+            <table className="w-full text-espresso">
               <thead>
-                <tr className="border-b border-border bg-muted/30">
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Day</th>
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Time</th>
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Session</th>
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Focus</th>
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Location</th>
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Format</th>
-                  <th className="text-left text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Duration</th>
-                  <th className="text-right text-xs uppercase tracking-wider text-muted-foreground font-medium px-5 py-4">Spots</th>
-                  <th className="px-5 py-4"></th>
+                <tr className="border-b border-border/20 bg-white/60 backdrop-blur-xl">
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Category</th>
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Est. Time</th>
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Treatment Area</th>
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Clinical Specialty</th>
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Location</th>
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Technology</th>
+                  <th className="text-left text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Typical Plan</th>
+                  <th className="text-right text-[10px] uppercase tracking-[0.15em] text-espresso/40 font-bold px-6 py-5">Status</th>
+                  <th className="px-6 py-5"></th>
                 </tr>
               </thead>
               <tbody>

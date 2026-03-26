@@ -1,4 +1,4 @@
-import { Dumbbell } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FocusBadgeProps {
@@ -9,10 +9,11 @@ interface FocusBadgeProps {
 
 const focusBadgeClasses = (focus: string) => {
   switch (focus) {
-    case "Strength":
+    case "High Precision":
+    case "Sensitive":
       return "bg-primary/10 text-primary border border-primary/20";
-    case "Conditioning":
-    case "Mobility":
+    case "Efficiency":
+    case "Total Coverage":
       return "bg-secondary text-secondary-foreground border border-border";
     default:
       return "bg-muted text-muted-foreground border border-border";
@@ -28,7 +29,7 @@ const FocusBadge = ({ focus, className, iconClassName }: FocusBadgeProps) => {
         className
       )}
     >
-      <Dumbbell className={cn("w-3.5 h-3.5", iconClassName)} aria-hidden="true" />
+      <ShieldCheck className={cn("w-3.5 h-3.5", iconClassName)} aria-hidden="true" />
       {focus}
     </span>
   );

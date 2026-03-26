@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
   label: string;
-  title: string;
+  title: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
   className?: string;
@@ -27,7 +27,7 @@ const SectionHeader = ({
         </span>
       </div>
       <div className="space-y-4">
-        <h2 className={cn("text-3xl sm:text-4xl font-bold text-foreground", titleClassName)}>
+        <h2 className={cn("text-3xl sm:text-4xl font-semibold text-espresso tracking-tight", titleClassName)}>
           {title}
         </h2>
         {description && (

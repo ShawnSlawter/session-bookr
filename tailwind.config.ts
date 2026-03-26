@@ -65,6 +65,11 @@ export default {
         xl: "var(--radius-xl)",
         "2xl": "var(--radius-2xl)",
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'serif'],
+        outfit: ['Outfit', 'sans-serif'],
+      },
       letterSpacing: {
         tag: "var(--tracking-tag)",
       },

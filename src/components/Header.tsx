@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useBookingDemo } from "@/context/BookingContext";
 
 const Header = () => {
+  const { openBookingDemo } = useBookingDemo();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -58,20 +60,23 @@ const Header = () => {
   };
 
   const handleBook = () => {
-    scrollTo("logistics");
+    setMobileOpen(false);
+    openBookingDemo();
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"
+        scrolled 
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
+          : "bg-gradient-to-b from-background/40 via-background/10 to-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14 sm:h-20">
           <div
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-foreground font-semibold text-lg sm:text-xl tracking-[0.15em] uppercase whitespace-nowrap transition-standard hover:opacity-80 active:scale-95 cursor-pointer"
+            className="text-espresso font-semibold text-lg sm:text-xl tracking-[0.15em] uppercase whitespace-nowrap transition-standard hover:opacity-80 active:scale-95 cursor-pointer"
             role="link"
             aria-label="Maya Alvarez Laser Studio - Home"
           >
@@ -86,14 +91,14 @@ const Header = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className={`text-xs tracking-widest uppercase font-semibold transition-all duration-300 relative group/nav ${
+                  className={`text-[11px] tracking-widest uppercase font-bold transition-all duration-300 relative group/nav ${
                     isActive
                       ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-espresso/70 hover:text-primary"
                   }`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1.5 left-0 h-[2px] bg-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover/nav:w-full"}`} />
+                  <span className={`absolute -bottom-1 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover/nav:w-full"}`} />
                 </button>
               );
             })}

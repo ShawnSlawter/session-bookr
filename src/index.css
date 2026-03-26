@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,11 +7,18 @@
 @layer base {
   :root {
     /* Warm Ivory / Soft Neutrals Theme */
-    --background: 35 30% 98%; 
-    --foreground: 20 20% 18%; 
+    --background: 35 40% 98%; 
+    --foreground: 20 25% 12%; 
 
-    --card: 35 20% 96%;
-    --card-foreground: 20 20% 18%;
+    --card: 35 30% 97%;
+    --card-foreground: 20 25% 12%;
+
+    /* Tonal Surface Variations - Visible Contrast Pass */
+    --surface-ivory: 35 40% 98.5%;   /* Baseline Ivory */
+    --surface-cream: 38 40% 94%;     /* Noticeable Warmth */
+    --surface-blush: 345 28% 95%;    /* Visible Blush Tint */
+    --surface-stone: 20 18% 93.5%;   /* Defined Soft Neutral */
+    --surface-taupe: 35 15% 90.5%;   /* Elite Grounding Neutral */
 
     --popover: 0 0% 100%;
     --popover-foreground: 20 20% 18%;
@@ -59,12 +66,11 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground antialiased font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    @apply font-outfit tracking-[-0.01em];
   }
 
   html {
@@ -113,6 +119,65 @@
   .stagger-1 { transition-delay: 100ms; }
   .stagger-2 { transition-delay: 200ms; }
   .stagger-3 { transition-delay: 300ms; }
+
+  /* Premium Polish Utilities */
+  .premium-haze {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premium-haze::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 10% 20%, hsla(35, 40%, 90%, 0.6) 0%, transparent 60%),
+      radial-gradient(circle at 90% 80%, hsla(340, 30%, 48%, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, hsla(20, 25%, 95%, 0.4) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .premium-glow-orb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+  }
+
+  .soft-glass {
+    @apply bg-background/40 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.04)];
+  }
+
+  .premium-card {
+    @apply bg-background border border-border/40 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-700 ease-in-out;
+  }
+
+  .architectural-panel {
+    @apply relative overflow-hidden rounded-[2.5rem] border border-border/30 bg-white/40 backdrop-blur-sm shadow-[0_32px_64px_-16px_rgba(0,0,0,0.03)];
+  }
+
+  .text-espresso {
+    @apply text-[#1A1614];
+  }
+
+  .section-blend-mask {
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  }
+
+  .atmospheric-junction {
+    @apply absolute left-0 right-0 h-[600px] pointer-events-none z-[5] opacity-60;
+  }
+
+  .bg-ivory { background-color: hsl(var(--surface-ivory)); }
+  .bg-cream { background-color: hsl(var(--surface-cream)); }
+  .bg-blush { background-color: hsl(var(--surface-blush)); }
+  .bg-stone { background-color: hsl(var(--surface-stone)); }
+  .bg-taupe { background-color: hsl(var(--surface-taupe)); }
 }
 
 @keyframes coach-fade-in-up {

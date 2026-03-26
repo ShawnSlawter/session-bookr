@@ -1,6 +1,7 @@
 import { ShieldCheck, Sparkles, Target } from "lucide-react";
 import SectionHeader from "./ui/SectionHeader";
-import laserStudioRoom from "../assets/laser-hero-bg.jpg";
+import treatmentSuite from "../assets/placeholder-treatment-suite.jpg";
+import consultationSpace from "../assets/placeholder-consultation-space.jpg";
 import mayaPortrait from "../assets/maya-alvarez-boutique-portrait.jpg";
 
 const TrustSection = () => {
@@ -20,58 +21,52 @@ const TrustSection = () => {
   ];
 
   return (
-    <section id="provider" className="py-20 sm:py-28 relative bg-card">
+    <section id="provider" className="py-24 sm:py-32 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader
-          label="Founder-Led Boutique Clinic"
-          title="Maya Alvarez"
+          label="The Studio Founder"
+          title={
+            <>
+              Clinical Excellence. <br />
+              Individual Care.
+            </>
+          }
         >
-          <div className="flex flex-wrap items-center gap-2 mt-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1.5 text-[10px] tracking-widest uppercase font-bold text-primary">
-              Founder & Lead Specialist
+          <div className="flex flex-wrap items-center gap-3 mt-4">
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/5 text-primary border border-primary/20 px-4 py-1.5 text-[10px] tracking-[0.15em] font-bold uppercase">
+              Maya Alvarez
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-background border border-border px-3 py-1.5 text-[11px] font-medium text-muted-foreground shadow-sm">
-              12+ years experience · 5,000+ treatments
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-background border border-border px-3 py-1.5 text-[11px] font-medium text-muted-foreground shadow-sm">
-              Precision, Cooling, Comfort
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/40 border border-border/40 px-4 py-1.5 text-[10px] font-bold text-espresso/40 uppercase tracking-[0.15em] italic">
+              Lead Clinical Specialist
             </span>
           </div>
         </SectionHeader>
 
         {/* Provider Profile — two-column */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 mb-16 sm:mb-20 mt-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-24 sm:mb-32 mt-16 items-center">
           {/* Portrait */}
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden coach-fade-in-up border border-border/50 shadow-lg shadow-black/5 flex items-center justify-center bg-muted/30">
-            {/* Founder portrait (fictional placeholder) */}
+          <div className="relative aspect-[4/5] rounded-[3.5rem] overflow-hidden coach-fade-in-up architectural-panel group shadow-[0_64px_128px_-32px_rgba(26,22,20,0.1)] border border-border/10">
+            {/* Founder portrait */}
             <div
-              className="absolute inset-0 bg-center bg-cover"
+              className="absolute inset-0 bg-center bg-cover transition-transform duration-[3s] group-hover:scale-110"
               style={{
                 backgroundImage: `url(${mayaPortrait})`,
                 backgroundPosition: "center 20%",
               }}
               role="img"
-              aria-label="Maya Alvarez, founder and lead laser specialist inside a warm Austin boutique studio"
+              aria-label="Maya Alvarez, founder and lead laser specialist"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/92 via-background/25 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="inline-flex flex-wrap items-center gap-4 rounded-2xl bg-background/85 px-5 py-4 backdrop-blur-md shadow-xl border border-white/20">
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-foreground">
-                    12+ years experience
-                  </span>
-                  <span className="text-[11px] font-medium text-muted-foreground mt-0.5">
-                    5,000+ treatments
-                  </span>
+            <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 via-transparent to-transparent opacity-60" />
+            
+            <div className="absolute bottom-8 left-8 right-8">
+              <div className="grid grid-cols-2 gap-px bg-white/20 backdrop-blur-2xl rounded-3xl overflow-hidden border border-white/30 shadow-2xl">
+                <div className="bg-white/95 p-5 flex flex-col items-center text-center">
+                  <span className="text-xl font-bold text-espresso leading-none mb-1">12+</span>
+                  <span className="text-[9px] uppercase tracking-widest text-espresso/40 font-bold">Years Practice</span>
                 </div>
-                <div className="h-8 w-px bg-border/60 hidden sm:block" />
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-foreground">
-                    All skin tones
-                  </span>
-                  <span className="text-[11px] font-medium text-muted-foreground mt-0.5">
-                    Cooling-first comfort.
-                  </span>
+                <div className="bg-white/90 p-5 flex flex-col items-center text-center border-l border-espresso/5">
+                  <span className="text-xl font-bold text-espresso leading-none mb-1">5k+</span>
+                  <span className="text-[9px] uppercase tracking-widest text-espresso/40 font-bold">Treatments Done</span>
                 </div>
               </div>
             </div>
@@ -79,26 +74,33 @@ const TrustSection = () => {
 
           {/* Bio + Bullets */}
           <div className="flex flex-col justify-center coach-fade-in-up">
-            <p className="text-xl sm:text-2xl text-foreground font-light leading-snug mb-5 max-w-xl">
-              Founder-led laser expertise in <span className="font-semibold text-primary">Austin, Texas.</span>
-            </p>
-            <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed mb-10 max-w-prose">
-              I built this boutique studio for a calmer, appointment-only laser experience. You will never feel rushed or “just scheduled.” We focus on comfort, precision, and customization—calibrating settings to your hair density and skin tone for long-term reduction.
-            </p>
-
-            <div className="space-y-5">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/80 px-1 border-b border-border/60 pb-2 w-fit">
-                Clinic Standards
+            <div className="space-y-6 mb-12">
+              <h3 className="text-3xl sm:text-4xl font-light tracking-tight text-espresso leading-tight">
+                Refining the laser experience <br />
+                <span className="font-semibold text-primary/80 italic">for the modern patient.</span>
+              </h3>
+              <p className="text-base sm:text-lg text-espresso/70 leading-relaxed max-w-prose font-medium">
+                I founded this boutique studio to escape the volume-first model. Here, you are never "just an appointment." We focus on high-fidelity precision, cooling comfort, and anatomical customization—calibrating every zap to your unique profile.
               </p>
-              <div className="space-y-5">
+            </div>
+
+            <div className="space-y-8">
+              <div className="flex items-center gap-3">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-espresso/20 font-bold">Clinic Standards</span>
+                <span className="h-px flex-1 bg-border/20" />
+              </div>
+              
+              <div className="grid gap-8">
                 {philosophy.map((p, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center border border-primary/10 transition-colors hover:bg-primary/10">
-                      <p.icon className="w-5 h-5 text-primary" aria-hidden="true" />
+                  <div key={i} className="flex items-start gap-4 group">
+                    <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white flex items-center justify-center border border-border/60 transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-xl group-hover:shadow-primary/5">
+                      <p.icon className="w-4.5 h-4.5 text-primary/40" aria-hidden="true" />
                     </div>
-                    <p className="text-[15px] text-muted-foreground leading-relaxed pt-3 max-w-prose">
-                      {p.text}
-                    </p>
+                    <div className="space-y-1">
+                      <p className="text-[14px] text-espresso/80 font-bold leading-relaxed pt-2.5">
+                        {p.text}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -107,14 +109,14 @@ const TrustSection = () => {
         </div>
 
         {/* Clinic Environment Images */}
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid sm:grid-cols-2 gap-6 sm:gap-12">
           {/* Treatment Room */}
-          <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-border/50 shadow-sm transition-transform hover:-translate-y-1 duration-500 bg-muted/30">
+          <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden architectural-panel transition-all hover:-translate-y-2 duration-700 bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)]">
             <div
               className="absolute inset-0 bg-center bg-cover"
               style={{
-                backgroundImage: `url(${laserStudioRoom})`,
-                backgroundPosition: "center 25%",
+                backgroundImage: `url(${treatmentSuite})`,
+                backgroundPosition: "center",
               }}
               role="img"
               aria-label="Warm private treatment suite with premium laser equipment"
@@ -128,12 +130,12 @@ const TrustSection = () => {
           </div>
 
           {/* Consultation Area */}
-          <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-border/50 shadow-sm transition-transform hover:-translate-y-1 duration-500 bg-muted/30">
+          <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden architectural-panel transition-all hover:-translate-y-2 duration-700 bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)]">
             <div
               className="absolute inset-0 bg-center bg-cover"
               style={{
-                backgroundImage: `url(${laserStudioRoom})`,
-                backgroundPosition: "center 60%",
+                backgroundImage: `url(${consultationSpace})`,
+                backgroundPosition: "center",
               }}
               role="img"
               aria-label="Warm private consultation area inside the boutique laser studio"
