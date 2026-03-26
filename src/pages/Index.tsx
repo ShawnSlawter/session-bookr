@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import TrustStrip from "@/components/TrustStrip";
 import ScheduleSection from "@/components/ScheduleSection";
 import TrustSection from "@/components/TrustSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -14,6 +15,9 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <HeroSection />
+      <div className="reveal-on-scroll">
+        <TrustStrip />
+      </div>
       <div id="schedule" className="reveal-on-scroll">
         <ScheduleSection />
       </div>

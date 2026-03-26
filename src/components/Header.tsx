@@ -8,9 +8,9 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   const navLinks = [
-    { label: "Schedule", id: "schedule" },
-    { label: "About", id: "trust" },
-    { label: "Location", id: "logistics" },
+    { label: "Results", id: "testimonials" },
+    { label: "Services", id: "schedule" },
+    { label: "Safety & FAQ", id: "logistics" },
   ];
 
   useEffect(() => {
@@ -58,25 +58,24 @@ const Header = () => {
   };
 
   const handleBook = () => {
-    scrollTo("schedule");
+    scrollTo("logistics");
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex items-center justify-between h-14 sm:h-20">
           <div
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-foreground font-bold text-base sm:text-lg tracking-tag uppercase whitespace-nowrap transition-standard hover:opacity-80 active:scale-95 cursor-pointer"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="text-foreground font-semibold text-lg sm:text-xl tracking-[0.15em] uppercase whitespace-nowrap transition-standard hover:opacity-80 active:scale-95 cursor-pointer"
             role="link"
-            aria-label="Alex Moreno - Home"
+            aria-label="Maya Alvarez Laser Studio - Home"
           >
-            Alex Moreno
+            Maya Alvarez
           </div>
 
           {/* Desktop nav */}
@@ -87,23 +86,23 @@ const Header = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className={`text-sm tracking-tag uppercase font-bold transition-all duration-300 relative group/nav ${
+                  className={`text-xs tracking-widest uppercase font-semibold transition-all duration-300 relative group/nav ${
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover/nav:w-full"}`} />
+                  <span className={`absolute -bottom-1.5 left-0 h-[2px] bg-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover/nav:w-full"}`} />
                 </button>
               );
             })}
             <Button
               size="sm"
               onClick={handleBook}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-5 text-sm font-semibold transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] hover:shadow-[0_0_20px_hsl(24,95%,53%,0.3)]"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 h-10 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/20 hover:shadow-primary/30"
             >
-              Book Your Session
+              Book Free Consult
             </Button>
           </nav>
 
@@ -112,13 +111,13 @@ const Header = () => {
             <Button
               size="sm"
               onClick={handleBook}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-4 text-xs font-semibold h-8"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 text-xs font-semibold h-8 shadow-sm"
             >
-              Book
+              Consult
             </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-foreground p-1"
+              className="text-foreground p-1 hover:text-primary transition-colors"
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
             >
@@ -130,23 +129,23 @@ const Header = () => {
 
       {/* Mobile menu + overlay */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-14 sm:top-16 z-40 animate-in fade-in slide-in-from-top-2 duration-300">
+        <div className="md:hidden fixed inset-x-0 top-14 sm:top-20 z-40 animate-in fade-in slide-in-from-top-2 duration-300">
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm h-screen"
+            className="absolute inset-0 bg-foreground/30 backdrop-blur-sm h-[calc(100vh-3.5rem)]"
             onClick={() => setMobileOpen(false)}
           />
           <div className="relative bg-background/98 backdrop-blur-md border-b border-border shadow-xl">
-            <nav className="flex flex-col px-4 py-3 gap-1">
+            <nav className="flex flex-col px-6 py-5 gap-3">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.id;
                 return (
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className={`text-sm py-2 text-left transition-colors ${
+                    className={`text-sm py-2 tracking-widest uppercase text-left transition-colors border-b border-border/50 ${
                       isActive
-                        ? "text-foreground font-semibold"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "text-primary font-bold"
+                        : "text-foreground font-medium hover:text-primary pl-2"
                     }`}
                   >
                     {link.label}
