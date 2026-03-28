@@ -14,71 +14,36 @@ const Index = () => {
 
   return (
     <BookingProvider>
-      <div className="min-h-screen bg-ivory text-foreground selection:bg-primary/10">
+      <div className="min-h-screen bg-ivory text-foreground relative selection:bg-primary/10">
         <Header />
-        <HeroSection />
-      
-      {/* Section 1: Trust Strip (Ivory) */}
-      <div className="relative">
-        <div className="absolute inset-0 bg-ivory" />
-        <div className="relative z-10 reveal-on-scroll">
-          <TrustStrip />
-        </div>
-      </div>
+        
+        <main>
+          <HeroSection />
+          
+          <div className="reveal-on-scroll">
+            <TrustStrip />
+          </div>
 
-      {/* Junction 1: Ivory -> Cream */}
-      <div className="atmospheric-junction -mt-48 bg-gradient-to-b from-ivory to-cream" />
+          <section id="schedule" className="reveal-on-scroll">
+            <ScheduleSection />
+          </section>
 
-      {/* Section 2: Schedule (Cream) */}
-      <div id="schedule" className="relative py-20 sm:py-32">
-        <div className="absolute inset-0 bg-cream" />
-        <div className="relative z-10 reveal-on-scroll">
-          <ScheduleSection />
-        </div>
-      </div>
+          <section id="trust" className="reveal-on-scroll">
+            <TrustSection />
+          </section>
 
-      {/* Junction 2: Cream -> Taupe */}
-      <div className="atmospheric-junction -mt-48 bg-gradient-to-b from-cream to-taupe" />
+          <section id="testimonials" className="reveal-on-scroll">
+            <TestimonialsSection />
+          </section>
 
-      {/* Section 3: Trust (Taupe) */}
-      <div id="trust" className="relative py-20 sm:py-32">
-        <div className="absolute inset-0 bg-taupe" />
-        <div className="relative z-10 reveal-on-scroll">
-          <TrustSection />
-        </div>
-      </div>
+          <section id="logistics" className="reveal-on-scroll">
+            <LogisticsSection />
+          </section>
 
-      {/* Junction 3: Taupe -> Blush */}
-      <div className="atmospheric-junction -mt-48 bg-gradient-to-b from-taupe to-blush" />
-
-      {/* Section 4: Testimonials (Blush) */}
-      <div id="testimonials" className="relative py-20 sm:py-32">
-        <div className="absolute inset-0 bg-blush" />
-        <div className="relative z-10 reveal-on-scroll">
-          <TestimonialsSection />
-        </div>
-      </div>
-
-      {/* Junction 4: Blush -> Stone */}
-      <div className="atmospheric-junction -mt-48 bg-gradient-to-b from-blush to-stone" />
-
-      {/* Section 5: Logistics (Stone) */}
-      <div id="logistics" className="relative py-20 sm:py-32">
-        <div className="absolute inset-0 bg-stone" />
-        <div className="relative z-10 reveal-on-scroll">
-          <LogisticsSection />
-        </div>
-      </div>
-
-      {/* Junction 5: Stone -> Taupe (Footer transition) */}
-      <div className="atmospheric-junction -mt-48 bg-gradient-to-b from-stone to-taupe" />
-
-      <div className="relative py-20 sm:py-32">
-        <div className="absolute inset-0 bg-taupe" />
-        <div className="relative z-10 reveal-on-scroll">
-          <FooterCTA />
-        </div>
-        </div>
+          <div className="reveal-on-scroll">
+            <FooterCTA />
+          </div>
+        </main>
       </div>
     </BookingProvider>
   );

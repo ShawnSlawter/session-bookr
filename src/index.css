@@ -7,24 +7,24 @@
 @layer base {
   :root {
     /* Warm Ivory / Soft Neutrals Theme */
-    --background: 35 40% 98%; 
-    --foreground: 20 25% 12%; 
+    --background: 35 40% 98.5%;
+    --foreground: 20 25% 12%;
 
     --card: 35 30% 97%;
     --card-foreground: 20 25% 12%;
 
-    /* Tonal Surface Variations - Visible Contrast Pass */
-    --surface-ivory: 35 40% 98.5%;   /* Baseline Ivory */
-    --surface-cream: 38 40% 94%;     /* Noticeable Warmth */
-    --surface-blush: 345 28% 95%;    /* Visible Blush Tint */
-    --surface-stone: 20 18% 93.5%;   /* Defined Soft Neutral */
-    --surface-taupe: 35 15% 90.5%;   /* Elite Grounding Neutral */
+    /* Tonal Surface Variations */
+    --surface-ivory: 35 40% 98.5%;
+    --surface-cream: 38 40% 94%;
+    --surface-blush: 345 28% 95%;
+    --surface-stone: 20 18% 93.5%;
+    --surface-taupe: 35 15% 90.5%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 20 20% 18%;
 
     /* Dusty Mauve / Muted Rose Accent */
-    --primary: 340 30% 48%; 
+    --primary: 340 30% 48%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 35 20% 90%;
@@ -69,7 +69,12 @@
     @apply bg-background text-foreground antialiased font-sans;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-outfit tracking-[-0.01em];
   }
 
@@ -84,7 +89,6 @@
 
 @layer utilities {
   .hero-section {
-    /* Adjusting scoped hero accent to match new primary */
     --hero-accent: hsl(340, 30%, 48%);
     --hero-accent-glow: hsla(340, 30%, 48%, 0.12);
     --hero-accent-subtle: hsla(340, 30%, 48%, 0.08);
@@ -94,14 +98,13 @@
   .transition-standard {
     @apply transition-all duration-300 ease-out;
   }
-  
+
   .hover-lift {
     @apply transition-transform duration-300 ease-out hover:-translate-y-1;
   }
 
   .hover-glow {
-    /* Update hover-glow to match new primary instead of orange */
-    @apply transition-shadow duration-300 ease-out hover:shadow-[0_0_25px_hsla(340,30%,48%,0.15)];
+    @apply transition-shadow duration-300 ease-out hover:shadow-[0_0_25px_hsla(340, 30%, 48%, 0.15)];
   }
 
   /* Entrance Animations */
@@ -116,9 +119,17 @@
     transform: translateY(0);
   }
 
-  .stagger-1 { transition-delay: 100ms; }
-  .stagger-2 { transition-delay: 200ms; }
-  .stagger-3 { transition-delay: 300ms; }
+  .stagger-1 {
+    transition-delay: 100ms;
+  }
+
+  .stagger-2 {
+    transition-delay: 200ms;
+  }
+
+  .stagger-3 {
+    transition-delay: 300ms;
+  }
 
   /* Premium Polish Utilities */
   .premium-haze {
@@ -130,12 +141,13 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: 
-      radial-gradient(circle at 10% 20%, hsla(35, 40%, 90%, 0.6) 0%, transparent 60%),
-      radial-gradient(circle at 90% 80%, hsla(340, 30%, 48%, 0.08) 0%, transparent 60%),
-      radial-gradient(circle at 50% 50%, hsla(20, 25%, 95%, 0.4) 0%, transparent 80%);
+    background:
+      radial-gradient(circle at 12% 22%, hsla(35, 40%, 90%, 0.45) 0%, transparent 58%),
+      radial-gradient(circle at 88% 76%, hsla(340, 30%, 48%, 0.06) 0%, transparent 55%),
+      radial-gradient(circle at 52% 48%, hsla(20, 25%, 95%, 0.28) 0%, transparent 72%);
     pointer-events: none;
     z-index: 0;
+    opacity: 0.22;
   }
 
   .premium-glow-orb {
@@ -165,19 +177,25 @@
     @apply text-[#1A1614];
   }
 
-  .section-blend-mask {
-    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  .bg-ivory {
+    background-color: hsl(var(--surface-ivory));
   }
 
-  .atmospheric-junction {
-    @apply absolute left-0 right-0 h-[600px] pointer-events-none z-[5] opacity-60;
+  .bg-cream {
+    background-color: hsl(var(--surface-cream));
   }
 
-  .bg-ivory { background-color: hsl(var(--surface-ivory)); }
-  .bg-cream { background-color: hsl(var(--surface-cream)); }
-  .bg-blush { background-color: hsl(var(--surface-blush)); }
-  .bg-stone { background-color: hsl(var(--surface-stone)); }
-  .bg-taupe { background-color: hsl(var(--surface-taupe)); }
+  .bg-blush {
+    background-color: hsl(var(--surface-blush));
+  }
+
+  .bg-stone {
+    background-color: hsl(var(--surface-stone));
+  }
+
+  .bg-taupe {
+    background-color: hsl(var(--surface-taupe));
+  }
 }
 
 @keyframes coach-fade-in-up {
@@ -185,6 +203,7 @@
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -203,8 +222,10 @@
     opacity: 1;
     transform: none;
   }
-  
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-delay: -1ms !important;
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;

@@ -47,7 +47,7 @@ const reviews: Review[] = [
 const TestimonialsSection = () => {
   const { openBookingDemo } = useBookingDemo();
   return (
-    <section id="results" className="py-28 sm:py-36 relative overflow-hidden bg-background">
+    <section id="results" className="py-16 sm:py-24 relative overflow-hidden">
       {/* Signature Boutique Glows */}
       <div className="premium-glow-orb bg-primary/10 left-[-5%] top-[-5%] opacity-15" />
       <div className="premium-glow-orb bg-white/10 right-[-5%] bottom-[-5%] opacity-10" />

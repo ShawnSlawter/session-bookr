@@ -8,7 +8,7 @@ const FooterCTA = () => {
   return (
     <>
       {/* CTA Section */}
-      <section className="py-24 sm:py-36 bg-accent/20 premium-haze border-y border-border/10 overflow-hidden relative">
+      <section className="py-16 sm:py-24 premium-haze overflow-hidden relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-espresso mb-6 tracking-tight">
             Smooth starts here.

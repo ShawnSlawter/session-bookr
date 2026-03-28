@@ -63,8 +63,20 @@ const ScheduleSection = () => {
   );
 
   return (
-    <section id="schedule" className="py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="schedule" className="py-16 sm:py-24 relative overflow-hidden bg-transparent">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+        {/* Environmental Atmosphere — Naturally distributed and diffuse; no hard clipping wrappers */}
+        <div className="absolute -inset-x-32 inset-y-12 pointer-events-none -z-10">
+          {/* Diffuse Blush Drift — Positioned to naturally fade before hitting boundaries */}
+          <div className="absolute top-[5%] -left-[15%] w-[900px] h-[800px] bg-primary/[0.08] rounded-full blur-[200px]" />
+          
+          {/* Broad Champagne Haze — Drift from bottom right */}
+          <div className="absolute bottom-[5%] -right-[15%] w-[1100px] h-[900px] bg-cream/60 rounded-full blur-[220px]" />
+          
+          {/* Subtle Taupe Pulse — Balanced middle grounding */}
+          <div className="absolute top-1/2 left-[20%] -translate-y-1/2 w-[600px] h-[600px] bg-primary/[0.03] rounded-full blur-[160px]" />
+        </div>
+
         <SectionHeader
           label="Treatment Areas"
           title="Curated precision for every curve."

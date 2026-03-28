@@ -50,8 +50,13 @@ const LogisticsSection = () => {
   const { openBookingDemo } = useBookingDemo();
 
   return (
-    <section id="logistics" className="py-24 sm:py-36 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="logistics" className="py-16 sm:py-24 relative overflow-hidden">
+      {/* Ambient Contrast Drift — Soft Peach & Mauve haze */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute bottom-[20%] -left-[10%] w-[900px] h-[900px] bg-cream/50 rounded-full blur-[160px]" />
+        <div className="absolute top-[0%] -right-[15%] w-[800px] h-[800px] bg-primary/[0.04] rounded-full blur-[140px]" />
+      </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeader
           label="Safety & Assurance"
           title={

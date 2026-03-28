@@ -13,9 +13,9 @@ const HeroSection = () => {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
-    <section className="hero-section relative min-h-[100svh] flex items-end pb-16 sm:pb-20 pt-24 overflow-hidden bg-background">
+    <section className="hero-section relative min-h-[100svh] flex items-end pb-16 sm:pb-20 pt-24 overflow-hidden">
       {/* Hero background image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 surface-fade-bottom">
         <img
           src={heroBg}
           alt="Warm, softly lit boutique laser hair removal treatment room"

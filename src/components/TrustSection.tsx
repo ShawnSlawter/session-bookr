@@ -21,8 +21,13 @@ const TrustSection = () => {
   ];
 
   return (
-    <section id="provider" className="py-24 sm:py-32 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="provider" className="py-16 sm:py-24 relative overflow-hidden">
+      {/* Ambient Contrast Drift — Subtle Mauve & Champagne haze */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] -left-[10%] w-[800px] h-[800px] bg-primary/[0.04] rounded-full blur-[140px]" />
+        <div className="absolute bottom-[0%] -right-[15%] w-[900px] h-[900px] bg-cream/40 rounded-full blur-[160px]" />
+      </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeader
           label="The Studio Founder"
           title={
