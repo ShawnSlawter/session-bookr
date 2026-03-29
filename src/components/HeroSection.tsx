@@ -15,17 +15,23 @@ const HeroSection = () => {
   return (
     <section className="hero-section relative min-h-[100svh] flex items-end pb-16 sm:pb-20 pt-24 overflow-hidden">
       {/* Hero background image */}
-      <div className="absolute inset-0 surface-fade-bottom">
+      <div 
+        className="absolute inset-0 surface-fade-bottom"
+        style={{
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+        }}
+      >
         <img
           src={heroBg}
           alt="Warm, softly lit boutique laser hair removal treatment room"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
         />
-        {/* Surgical Text-Zone Shield — ensures high contrast for all content without washing out the room detail */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-2/3 bg-gradient-to-r from-background via-background/90 to-transparent opacity-95 z-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-70 z-0" />
-        <div className="absolute inset-0 backdrop-blur-[0.5px] opacity-40 z-0" />
+        {/* Surgical Text-Zone Shield — ensures high contrast for all content while restoring clarity to the room detail */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-3/4 bg-gradient-to-r from-background via-background/80 to-transparent opacity-85 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-60 z-0" />
+        <div className="absolute inset-0 backdrop-blur-[0.5px] opacity-10 z-0" />
         
         {/* Controlled Light Blooms */}
         <div className="premium-glow-orb bg-primary/5 left-[-5%] top-[10%] opacity-20" />
@@ -79,7 +85,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               onClick={openBookingDemo}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-10 h-14 sm:h-16 text-base font-semibold shadow-[0_20px_50px_-12px_hsla(340,30%,48%,0.45)] hover:shadow-[0_25px_60px_-12px_hsla(340,30%,48%,0.6)] transition-all duration-700 hover:scale-[1.02] active:scale-[0.98] border border-white/20"
+              className="bg-primary hover:bg-primary/95 text-primary-foreground rounded-full px-10 h-14 sm:h-16 text-base font-semibold shadow-[0_24px_60px_-12px_hsla(340,30%,48%,0.5)] hover:shadow-[0_30px_70px_-12px_hsla(340,30%,48%,0.7)] transition-all duration-700 hover:scale-[1.02] active:scale-[0.98] border border-white/20"
             >
               Book My Free Consultation
             </Button>

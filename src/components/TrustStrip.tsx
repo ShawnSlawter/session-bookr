@@ -35,7 +35,7 @@ const signals = [
 
 const TrustStrip = () => {
   return (
-    <section className="py-20 sm:py-24 relative z-20 overflow-hidden">
+    <section className="py-20 sm:py-24 relative z-20 overflow-hidden -mt-6 sm:-mt-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Architectural Shelf — grouping signals for a more intentional, richer feel */}
         <div className="relative architectural-panel bg-white/10 border-white/40 shadow-[0_45px_100px_-30px_rgba(26,22,20,0.06)] px-8 py-12 sm:py-16 rounded-[2.5rem] overflow-hidden">
