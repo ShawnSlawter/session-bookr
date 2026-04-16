@@ -8,6 +8,7 @@ import LogisticsSection from "@/components/LogisticsSection";
 import FooterCTA from "@/components/FooterCTA";
 import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
 import { BookingProvider } from "@/context/BookingContext";
+import SentryTest from "@/components/SentryTest";
 
 const Index = () => {
   useRevealOnScroll();
@@ -114,8 +115,10 @@ const Index = () => {
             <FooterCTA />
           </div>
         </main>
+        <SentryTest />
       </div>
     </BookingProvider>
+
   );
 };
 

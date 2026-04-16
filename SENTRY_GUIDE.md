@@ -1,57 +1,52 @@
-# Sentry Setup Guide for Session-Bookr
+# Sentry Integration Guide
 
-This guide follows the initialization of [Issue #2](https://github.com/ShawnSlawter/session-bookr/issues/2).
+This document outlines the steps for maintaining and verifying the Sentry integration in the `session-bookr` project.
 
-## 1. Install Dependencies
-Run the following command to install the Sentry SDK:
+## 1. Setup
+
+### Installation
+The project uses `@sentry/react`. If you are setting up from scratch or adding new integrations:
 ```bash
+# Using Bun (preferred in this project environment)
 bun add @sentry/react
 ```
 
-## 2. Configuration
-Initialize Sentry in your main entry point (e.g., `src/main.tsx`).
+### Configuration
+Sentry is initialized in `src/main.tsx`. It is configured to:
+- Capture all errors via `Sentry.init`.
+- Wrap the entire application in a `Sentry.ErrorBoundary`.
+- Provide a user feedback dialog on crash.
+- Enable Session Replay (10% samples normally, 100% on error).
 
-```typescript
-import * as Sentry from "@sentry/react";
+### Environment Variables
+Ensure `VITE_SENTRY_DSN` is set in your `.env.local` or deployment environment.
+See `.env.example` for the format.
 
-Sentry.init({
-  dsn: "YOUR_SENTRY_DSN",
-  integrations: [
-    Sentry.browserTracingIntegration(),
-    Sentry.replayIntegration(),
-  ],
-  // Tracing
-  tracesSampleRate: 1.0, 
-  // Session Replay
-  replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1.0,
-});
-```
+## 2. Verification
 
-## 3. Environment Variables
-Add your DSN to `.env.local`:
-```env
-VITE_SENTRY_DSN=your_dsn_here
-```
-Update `main.tsx` to use the environment variable:
-```typescript
-dsn: import.meta.env.VITE_SENTRY_DSN,
-```
+To verify that Sentry is working correctly, you can trigger a test error.
 
-## 4. Feedback Loop (User Feedback)
-To enable the feedback form on crashes, use the `Sentry.showReportDialog` or the `ErrorBoundary` component.
+### Verification Component
+The project includes a `SentryTest` component (rendered only in development) at the bottom left of the screen.
+- **Capture Msg**: Sends a test message to Sentry.
+- **Throw Error**: Manually triggers a JavaScript error to verify the `Sentry.ErrorBoundary` and error capture.
 
-```tsx
-<Sentry.ErrorBoundary fallback={<p>An error has occurred</p>} showDialog>
-  <App />
-</Sentry.ErrorBoundary>
-```
+### Local verification flow
+1. Set `VITE_SENTRY_DSN` in `.env.local`.
+2. Start the dev server: `npm run dev`.
+3. Open `http://localhost:8080/`.
+4. Use the "Sentry Debug" buttons to trigger events.
+5. Check your Sentry dashboard.
 
-## 5. Verification
-Trigger a test error to ensure Sentry is capturing it:
-```typescript
-throw new Error("Sentry Test Error");
-```
+### Verifying in Sentry Dashboard
+1. Open your Sentry project dashboard.
+2. Trigger the error in your local development environment (`npm run dev`).
+3. Check the "Issues" tab in Sentry. You should see "Sentry Test Error" appear within seconds.
+
+## 3. Best Practices
+- **Source Maps**: When building for production, ensure source maps are uploaded to Sentry for readable stack traces.
+- **Sensitive Data**: Avoid logging PII in breadcrumbs or tags.
+- **User Context**: Use `Sentry.setUser({ id: user.id, email: user.email })` after user login to link errors to specific users.
 
 ---
-*Refer to the official [Sentry Vite Documentation](https://docs.sentry.io/platforms/javascript/guides/vite/) for advanced source map uploads.*
+*Refer to the [Sentry React Documentation](https://docs.sentry.io/platforms/javascript/guides/react/) for more advanced configurations.*
