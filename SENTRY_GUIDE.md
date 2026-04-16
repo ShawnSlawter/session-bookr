@@ -26,17 +26,19 @@ See `.env.example` for the format.
 
 To verify that Sentry is working correctly, you can trigger a test error.
 
-### Verification Component
-The project includes a `SentryTest` component (rendered only in development) at the bottom left of the screen.
-- **Capture Msg**: Sends a test message to Sentry.
-- **Throw Error**: Manually triggers a JavaScript error to verify the `Sentry.ErrorBoundary` and error capture.
+### Verification
+To verify that Sentry is working correctly, you can temporarily trigger a test error in any component:
+```tsx
+<button onClick={() => { throw new Error("Sentry Test Error"); }}>
+  Trigger Test Error
+</button>
+```
 
 ### Local verification flow
 1. Set `VITE_SENTRY_DSN` in `.env.local`.
 2. Start the dev server: `npm run dev`.
-3. Open `http://localhost:8080/`.
-4. Use the "Sentry Debug" buttons to trigger events.
-5. Check your Sentry dashboard.
+3. Trigger the error in your local development environment.
+4. Check your Sentry dashboard for the new issue.
 
 ### Verifying in Sentry Dashboard
 1. Open your Sentry project dashboard.
