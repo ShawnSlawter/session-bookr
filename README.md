@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+# Session Bookr 📅
 
-## Project info
+A premium, highly-aesthetic booking and scheduling platform for boutique clinical treatments. Built with a focus on visual excellence, performance, and a modern developer experience.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Overview
 
-## How can I edit this code?
+Session Bookr is a high-end service scheduling application designed for boutique clinics (specifically aesthetic treatments like laser hair removal). It features a "consultation-first" booking workflow, dynamic treatment filtering, and a state-of-the-art UI with ambient animations and responsive layouts.
 
-There are several ways of editing your application.
+### Key Features
+- **Dynamic Booking System**: Context-driven appointment flow using `BookingProvider`.
+- **Architectural UI**: High-fidelity design system using Radix UI primitives and custom CSS animations.
+- **Scroll Reveal**: Custom hooks for fluid entrance animations as users navigate the clinic's offerings.
+- **Precision Filtering**: Advanced category filtering for treatment areas (Precision, Essential, Full Coverage).
 
-**Use Lovable**
+## 🛠️ Technology Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Frontend
+- **Framework**: [React 18](https://reactjs.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with [shadcn/ui](https://ui.shadcn.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Charts**: [Recharts](https://recharts.org/)
 
-Changes made via Lovable will be committed automatically to this repo.
+### State & Logic
+- **Data Fetching**: [TanStack Query (React Query) v5](https://tanstack.com/query/latest)
+- **Forms**: [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) validation
+- **Routing**: [React Router DOM v6](https://reactrouter.com/)
 
-**Use your preferred IDE**
+### Infrastructure & DevOps
+- **Backend/Auth**: [Supabase](https://supabase.com/)
+- **Monitoring**: [Sentry](https://sentry.io/) (Error tracking & performance)
+- **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
+- **Testing**: [Vitest](https://vitest.dev/) (Unit/Integration) & [Playwright](https://playwright.dev/) (E2E)
+- **Environment**: [Bun](https://bun.sh/) (Recommended package manager)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📦 Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+)
+- [Bun](https://bun.sh/) (Optional but recommended)
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ShawnSlawter/session-bookr.git
+   cd session-bookr
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. **Install dependencies**
+   ```bash
+   bun install
+   # or
+   npm install
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. **Environment Setup**
+   Create a `.env.local` file based on `.env.example`:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Add your `VITE_SENTRY_DSN` and other necessary credentials.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+4. **Run Development Server**
+   ```bash
+   bun dev
+   # or
+   npm run dev
+   ```
+
+## 🧪 Testing
+
+### Unit & Integration
+```bash
+bun test
+# or
+npm test
 ```
 
-**Edit a file directly in GitHub**
+### End-to-End (Playwright)
+```bash
+npx playwright test
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 📄 License
+This project is private and intended for specific clinical use.
